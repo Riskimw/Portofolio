@@ -178,34 +178,108 @@ body::-webkit-scrollbar {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.footer-inner {
+.footer-info {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  flex-direction: column;
+  gap: 8px;
+}
+.footer-info i {
+  color: #ff94b4;
+  margin-right: 10px;
+  font-size: 1.1rem;
 }
 
+.footer-info h4 {
+  color: white;
+  margin: 0;
+}
+
+.footer-role {
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+}
+
+.footer-info p {
+  margin: 0;
+  color: rgba(255,255,255,0.8);
+}
+
+.footer-info a {
+  color: #ff94b4;
+  text-decoration: none;
+  margin-left: 6px;
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
+}
 .footer-text {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);
   margin: 0;
+  padding:6px;
 }
 
-.footer-socials {
+/* logo jalan */
+.tech-stack {
   display: flex;
-  align-items: center;
-  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0;
 }
 
-.footer-socials a {
-  color: rgba(255, 255, 255, 0.6);
-  display: inline-flex;
-  transition: color 0.3s ease;
+.tech-stack span {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
 }
 
-.footer-socials a:hover {
-  color: #ff94b4;
+.tech-stack span:hover {
+  transform: translateY(-3px);
+  border-color: #ff94b4;
+  box-shadow: 0 0 15px rgba(255,148,180,0.3);
+}
+.tech-marquee {
+  width: 100%;
+  overflow: hidden;
+  margin: 25px 0;
+}
+
+.tech-track {
+  display: flex;
+  width: max-content;
+  gap: 20px;
+  animation: scrollTech 20s linear infinite;
+}
+
+.tech-track span {
+  white-space: nowrap;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+}
+
+@keyframes scrollTech {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-40%);
+  }
+}
+.tech-track span:hover {
+  border-color: #ff94b4;
+  box-shadow:
+    0 0 10px rgba(255,148,180,.4),
+    0 0 20px rgba(58,41,255,.3);
 }
 
 /* navbar */
