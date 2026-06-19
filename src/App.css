@@ -1,0 +1,290 @@
+/* Reset default margin body */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+
+    #1a0225 100%
+  );
+}
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
+}
+
+/* =====================================================
+   Projects Section
+   Palette pulled straight from the Aurora colorStops
+   (#3A29FF / #FF94B4 / #FF3232) so this section reads as
+   a continuation of the hero, not a new theme.
+===================================================== */
+.projects-section {
+  position: relative;
+  padding: 120px 0 80px;
+  color: #fff;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ff94b4;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  display: block;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  background: linear-gradient(90deg, #3a29ff, #ff94b4, #ff3232);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-subtitle {
+  margin-top: 18px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.projects-grid {
+  margin-top: 8px;
+}
+
+.project-card {
+  height: 100%;
+  padding: 32px 28px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease, box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 148, 180, 0.35);
+  box-shadow: 0 20px 40px -12px rgba(58, 41, 255, 0.35),
+    0 0 30px -8px rgba(255, 50, 50, 0.25);
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tag-pill {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.project-desc {
+  flex-grow: 1;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 22px;
+}
+
+.project-links {
+  display: flex;
+  gap: 12px;
+}
+
+.link-btn {
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 9px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(90deg, #3a29ff, #ff3232);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.link-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.link-btn-outline {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.link-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* =====================================================
+   Scroll reveal — same fade-up curve already used by
+   SplitText (opacity 0, y 40 -> opacity 1, y 0)
+===================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================================================
+   Footer
+===================================================== */
+.footer {
+  padding: 32px 0 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.footer-text {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.footer-socials a {
+  color: rgba(255, 255, 255, 0.6);
+  display: inline-flex;
+  transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: #ff94b4;
+}
+
+/* navbar */
+.link-btn-outline {
+  cursor: pointer;
+}
+.project-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+
+  backdrop-filter: blur(10px);
+}
+
+.project-modal {
+  position: relative;
+
+  width: 90%;
+  max-width: 900px;
+
+  max-height: 85vh; /* penting */
+
+  overflow-y: auto; /* penting */
+
+  padding: 40px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  color: white;
+
+  backdrop-filter: blur(20px);
+}
+.project-modal::-webkit-scrollbar {
+  display: none;
+}
+
+.close-modal {
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  border: none;
+  background: transparent;
+
+  color: white;
+
+  font-size: 24px;
+
+  cursor: pointer;
+}
+/* penutup navbar */
+
+@media (max-width: 576px) {
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .project-card,
+  .link-btn {
+    transition: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

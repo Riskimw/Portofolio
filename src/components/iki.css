@@ -1,0 +1,169 @@
+/* Aurora */
+.aurora-container {
+  width: 100%;
+  height: 90vh; /* FIX PENTING */
+  position: absolute;
+}
+
+/* Penutup Aurora */
+.navbar-brand {
+  color: white !important;
+}
+.nav-link {
+  color: white !important;
+}
+/* Text Type */
+.text-type {
+  display: inline-block;
+  white-space: pre-wrap;
+  font-size: 25px;
+  font-family: "Montserrat", sans-serif;
+}
+.text-type__cursor {
+  margin-left: 0.25rem;
+  display: inline-block;
+  opacity: 1;
+}
+.text-type__cursor--hidden {
+  display: none;
+}
+.Text1 {
+  color: white;
+  text-align: left;
+  position: static;
+  transform: none;
+  min-width: 520px; /* rubah posisi text didieu  */
+  margin-bottom: 30px;
+}
+
+.subtitle {
+  margin-top: 20px;
+  font-size: 18px;
+  color: white;
+  opacity: 0.9;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/* Penutup Text Type */
+
+/* Title card */
+.tilted-card-figure {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.tilted-card-demo-text {
+  margin-top: 200px;
+  margin-left: 17px;
+
+  width: 207px;
+  height: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(41, 3, 77, 0.212); /* transparan lembut */
+  backdrop-filter: blur(10px);
+  color: white;
+  text-shadow: 0 0 3px white; /* efek glow */
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.tilted-card-mobile-alert {
+  position: absolute;
+  top: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .tilted-card-mobile-alert {
+    display: block;
+  }
+  .tilted-card-caption {
+    display: none;
+  }
+}
+
+.tilted-card-inner {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.tilted-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  border-radius: 15px;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.tilted-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  will-change: transform;
+  transform: translateZ(30px);
+}
+
+/* Penutup Tilted card */
+
+.hero-section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  gap: 40px; /* jarak antara TextType dan TiltedCard */
+  color: white;
+}
+.hero-wrapper {
+  height: 100vh; /* layar penuh */
+  position: relative; /* konteks absolute di dalam */
+}
+
+/* ===== Mobile fix untuk Hero ===== */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    width: 90%;
+    max-width: 360px;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .Text1 {
+    min-width: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .text-type {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .text-type {
+    font-size: 18px;
+  }
+}
