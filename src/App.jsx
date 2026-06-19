@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import myPhoto from "./components/iki.jpg";
 import ClickSpark from "./components/ClickSpark";
 import SplitText from "./components/SplitText";
-import Reveal from "./components/Reveal";
+import Reveal from "./components/reveal";
 import projects from "./data/projects";
 
 import "./App.css";
@@ -195,8 +195,7 @@ function App() {
         <footer className="footer">
           <div className="container footer-inner">
             <p className="footer-text">
-              © {new Date().getFullYear()} Riski Muhammad Wiyanto. Built with
-              React.
+               {new Date().getFullYear()}, Riski Muhammad Wiyanto
             </p>
 
             <div className="footer-socials">
