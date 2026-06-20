@@ -144,22 +144,20 @@ function App() {
   <span><SiLaravel /> Laravel</span>
   <span><SiMysql /> MySQL</span>
   <span><SiPython /> Python</span>
-  <span><SiHtml /> Html</span>
-  <span><SiCss /> Cssl</span>
-  <span><SiPhp /> Php</span>
+  <span><SiHtml5 /> HTML</span>
+  <span><SiCss3 /> CSS</span>
+  <span><SiPhp /> PHP</span>
     <span><SiReact /> React</span>
   <span><SiFlutter /> Flutter</span>
   {/* duplikat */}
     <span><SiReact /> React</span>
   <span><SiFlutter /> Flutter</span>
-  <span><SiHtml /> Html</span>
-    <span><SiPhp /> Php</span>
+  <span><SiHtml5 /> HTML</span>
+    <span><SiPhp /> PHP</span>
   <span><SiLaravel /> Laravel</span>
   <span><SiMysql /> MySQL</span>
   <span><SiPython /> Python</span>
     <span><SiReact /> React</span>
-
-
 </div>
 </div>
 <div className="section-heading">
