@@ -8,7 +8,8 @@ import ClickSpark from "./components/ClickSpark";
 import SplitText from "./components/SplitText";
 import Reveal from "./components/reveal";
 import projects from "./data/projects";
-import LogoLoop from "./components/LogoLoop";
+// import LogoLoop from "./components/LogoLoop";
+import DecryptedText from './components/DecryptedText';
 import {
   SiReact,
   SiFlutter,
@@ -36,9 +37,8 @@ function App() {
         <nav className="navbar navbar-expand-lg fixed-top bg-transparent">
           <div className="container">
             <a className="navbar-brand" href="#">
-              Portofolio
+              Surinas
             </a>
-
             <button
               className="navbar-toggler"
               type="button"
@@ -181,6 +181,14 @@ function App() {
                   behind them.
                 </p>
               </Reveal>
+              <div style={{ marginTop: '4rem' }}>
+  {/* <DecryptedText
+  text="This text animates when in view"
+  revealDirection="start"
+  sequential
+  useOriginalCharsOnly={false}
+/> */}
+</div>
             </div>
                          
 
@@ -230,7 +238,7 @@ function App() {
         <footer className="footer" id="footer">
          <div className="container footer-inner">
   <div className="footer-info">
-    <h4>Riski Muhammad Wiyanto</h4>
+    {/* <h4>Riski Muhammad Wiyanto</h4> */}
 
     {/* <p className="footer-role">
       Backend Developer & Mobile App Enthusiast
