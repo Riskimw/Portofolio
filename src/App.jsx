@@ -16,6 +16,9 @@ import {
   SiMysql,
   SiPython,
   SiFirebase,
+  SiHtml5,
+  SiCss3,
+  SiPhp,
 } from "react-icons/si";
 
 import "./App.css";
