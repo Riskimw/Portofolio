@@ -15,9 +15,7 @@ import {
   SiLaravel,
   SiMysql,
   SiPython,
-  SiFirebase,
   SiHtml5,
-  SiCss3,
   SiPhp,
 } from "react-icons/si";
 
@@ -38,7 +36,7 @@ function App() {
         <nav className="navbar navbar-expand-lg fixed-top bg-transparent">
           <div className="container">
             <a className="navbar-brand" href="#">
-              PortoFolio
+              Portofolio
             </a>
 
             <button
@@ -148,7 +146,6 @@ function App() {
   <span><SiMysql /> MySQL</span>
   <span><SiPython /> Python</span>
   <span><SiHtml5 /> HTML</span>
-  <span><SiCss3 /> CSS</span>
   <span><SiPhp /> PHP</span>
     <span><SiReact /> React</span>
   <span><SiFlutter /> Flutter</span>
@@ -206,12 +203,12 @@ function App() {
 
                       <div className="project-links">
                         <a
-                          href={project.github}
+                          href={project.demo}
                           className="link-btn"
                           target="_blank"
                           rel="noreferrer"
                         >
-                          View Code
+                          Live Demo
                         </a>
 <button
   className="link-btn link-btn-outline"

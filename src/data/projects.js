@@ -2,16 +2,16 @@
 // Each entry maps directly to one card in the Projects section.
 const projects = [
   {
-    title: "Music Streaming App",
-    stack: ["Flutter", "Laravel", "MySQL"],
+    title: "Reservasi & Janji Temu Dokter Hewan",
+    stack: ["Java", "Kotlin"],
     description:
-      "A cross-platform music player with a custom Laravel backend — playlist handling, a favorites system, and smooth, responsive audio playback.",
-    github: "#",
-    demo: "#",
+      "Pawscare adalah aplikasi mobile yang dirancang untuk menjembatani pemilik hewan peliharaan dengan klinik dokter hewan.",
+    github: "https://github.com/Riskimw/Aplikasi-Reservasi-Janji-Temu-Dokter-Hewan.git",
+    demo: null,
       screenshots: [
-    "/images/music/1.jpg",
-   "/images/music/1.jpg",
-    "/images/bmw/profile.png"
+    "/images/kesehatan/1.jpg",
+   "/images/kesehatan/2.jpg",
+    "/images/kesehatan/3.jpg"
   ]
   },
   {
