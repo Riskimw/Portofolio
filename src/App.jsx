@@ -144,16 +144,19 @@ function App() {
   <span><SiLaravel /> Laravel</span>
   <span><SiMysql /> MySQL</span>
   <span><SiPython /> Python</span>
-  <span><SiFirebase /> Firebase</span>
+  <span><SiHtml /> Html</span>
+  <span><SiCss /> Cssl</span>
+  <span><SiPhp /> Php</span>
     <span><SiReact /> React</span>
   <span><SiFlutter /> Flutter</span>
   {/* duplikat */}
     <span><SiReact /> React</span>
   <span><SiFlutter /> Flutter</span>
+  <span><SiHtml /> Html</span>
+    <span><SiPhp /> Php</span>
   <span><SiLaravel /> Laravel</span>
   <span><SiMysql /> MySQL</span>
   <span><SiPython /> Python</span>
-  <span><SiFirebase /> Firebase</span>
     <span><SiReact /> React</span>
 
 
