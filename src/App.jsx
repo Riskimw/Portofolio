@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TextType from "./components/TextType";
 import Aurora from "./components/Aurora";
 import TiltedCard from "./components/TiltedCard";
@@ -8,7 +10,7 @@ import ClickSpark from "./components/ClickSpark";
 import SplitText from "./components/SplitText";
 import Reveal from "./components/reveal";
 import projects from "./data/projects";
-// import LogoLoop from "./components/LogoLoop";
+import LogoLoop from "./components/LogoLoop";
 import DecryptedText from './components/DecryptedText';
 import {
   SiReact,
@@ -22,8 +24,80 @@ import {
 
 import "./App.css";
 
+gsap.registerPlugin(ScrollTrigger);
+
+const techStack = [
+  { node: <SiReact />, title: "React" },
+  { node: <SiFlutter />, title: "Flutter" },
+  { node: <SiLaravel />, title: "Laravel" },
+  { node: <SiMysql />, title: "MySQL" },
+  { node: <SiPython />, title: "Python" },
+  { node: <SiHtml5 />, title: "HTML" },
+  { node: <SiPhp />, title: "PHP" },
+];
+
+// Card project sendiri biar tiap card punya ref & mouse-tracking masing-masing
+function ProjectCard({ project, onViewDetails }) {
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty("--spot-x", `${x}%`);
+    card.style.setProperty("--spot-y", `${y}%`);
+  };
+
+  return (
+    <div className="project-card" ref={cardRef} onMouseMove={handleMouseMove}>
+      <div className="project-card-spotlight" aria-hidden="true" />
+
+      <h3 className="project-title">{project.title}</h3>
+
+      <div className="project-tags">
+        {project.stack.map((tech) => (
+          <span className="tag-pill" key={tech}>
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      <p className="project-desc">{project.description}</p>
+
+      <div className="project-links">
+        
+          href={project.demo}
+          className="link-btn"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Live Demo
+        </a>
+        <button
+          className="link-btn link-btn-outline"
+          onClick={() => onViewDetails(project)}
+        >
+          View Details
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [selectedProject, setSelectedProject] = useState(null);
+
+  // fix: font custom (Fraunces dkk) kadang kelar load SETELAH SplitText
+  // ngukur posisi tiap karakter -> hasilnya numpuk/geser ("ngebug").
+  // refresh ScrollTrigger begitu font beneran ready biar di-re-measure ulang.
+  useEffect(() => {
+    document.fonts.ready.then(() => {
+      ScrollTrigger.refresh();
+    });
+  }, []);
+
   return (
     <div className="Fullscreen">
       <ClickSpark
@@ -138,29 +212,23 @@ function App() {
                 <span className="section-eyebrow">Portfolio</span>
               </Reveal>
             </div>
- <div className="tech-marquee">
-             <div className="tech-track">
-  <span><SiReact /> React</span>
-  <span><SiFlutter /> Flutter</span>
-  <span><SiLaravel /> Laravel</span>
-  <span><SiMysql /> MySQL</span>
-  <span><SiPython /> Python</span>
-  <span><SiHtml5 /> HTML</span>
-  <span><SiPhp /> PHP</span>
-    <span><SiReact /> React</span>
-  <span><SiFlutter /> Flutter</span>
-  {/* duplikat */}
-    <span><SiReact /> React</span>
-  <span><SiFlutter /> Flutter</span>
-  <span><SiHtml5 /> HTML</span>
-    <span><SiPhp /> PHP</span>
-  <span><SiLaravel /> Laravel</span>
-  <span><SiMysql /> MySQL</span>
-  <span><SiPython /> Python</span>
-    <span><SiReact /> React</span>
-</div>
-</div>
-<div className="section-heading">
+
+            <div className="tech-marquee">
+              <LogoLoop
+                logos={techStack}
+                speed={60}
+                direction="left"
+                logoHeight={32}
+                gap={48}
+                pauseOnHover
+                fadeOut
+                fadeOutColor="#08080c"
+                scaleOnHover
+                ariaLabel="Tech stack"
+              />
+            </div>
+
+            <div className="section-heading">
               <SplitText
                 text="Selected Projects"
                 className="section-title"
@@ -182,50 +250,23 @@ function App() {
                 </p>
               </Reveal>
               <div style={{ marginTop: '4rem' }}>
-  {/* <DecryptedText
-  text="This text animates when in view"
-  revealDirection="start"
-  sequential
-  useOriginalCharsOnly={false}
-/> */}
-</div>
+                {/* <DecryptedText
+                text="This text animates when in view"
+                revealDirection="start"
+                sequential
+                useOriginalCharsOnly={false}
+                /> */}
+              </div>
             </div>
-                         
 
             <div className="row g-4 projects-grid">
               {projects.map((project, index) => (
                 <div className="col-md-6 col-lg-4" key={project.title + index}>
                   <Reveal delay={index * 120}>
-                    <div className="project-card">
-                      <h3 className="project-title">{project.title}</h3>
-
-                      <div className="project-tags">
-                        {project.stack.map((tech) => (
-                          <span className="tag-pill" key={tech}>
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-
-                      <p className="project-desc">{project.description}</p>
-
-                      <div className="project-links">
-                        <a
-                          href={project.demo}
-                          className="link-btn"
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Live Demo
-                        </a>
-<button
-  className="link-btn link-btn-outline"
-  onClick={() => setSelectedProject(project)}
->
-  View Details
-</button>
-                      </div>
-                    </div>
+                    <ProjectCard
+                      project={project}
+                      onViewDetails={setSelectedProject}
+                    />
                   </Reveal>
                 </div>
               ))}
@@ -236,93 +277,92 @@ function App() {
 
         {/* Footer */}
         <footer className="footer" id="footer">
-         <div className="container footer-inner">
-  <div className="footer-info">
-    {/* <h4>Riski Muhammad Wiyanto</h4> */}
+          <div className="container footer-inner">
+            <div className="footer-info">
+              {/* <h4>Riski Muhammad Wiyanto</h4> */}
 
-    {/* <p className="footer-role">
-      Backend Developer & Mobile App Enthusiast
-    </p> */}
+              {/* <p className="footer-role">
+              Backend Developer & Mobile App Enthusiast
+              </p> */}
 
-<div className="footer-socials">
-  <a href="https://github.com/Riskimw">
-    <i className="bi bi-github"></i>
-  </a>
+              <div className="footer-socials">
+                <a href="https://github.com/Riskimw">
+                  <i className="bi bi-github"></i>
+                </a>
 
-  <a href="mailto:riskimw05@gmail.com">
-    <i className="bi bi-envelope-fill"></i>
-  </a>
+                <a href="mailto:riskimw05@gmail.com">
+                  <i className="bi bi-envelope-fill"></i>
+                </a>
 
-  <a href="https://wa.me/6283153192700">
-    <i className="bi bi-whatsapp"></i>
-  </a>
+                <a href="https://wa.me/6283153192700">
+                  <i className="bi bi-whatsapp"></i>
+                </a>
 
-  <a href="https://instagram.com/c.syrmw">
-    <i className="bi bi-instagram"></i>
-  </a>
-</div>
-    
-  </div>
+                <a href="https://instagram.com/c.syrmw">
+                  <i className="bi bi-instagram"></i>
+                </a>
+              </div>
+            </div>
 
-  <p className="footer-text">
-    © {new Date().getFullYear()} Riski Muhammad Wiyanto
-  </p>
-</div>
+            <p className="footer-text">
+              © {new Date().getFullYear()} Riski Muhammad Wiyanto
+            </p>
+          </div>
         </footer>
         {/* Penutup Footer */}
         {selectedProject && (
-  <div
-    className="project-modal-overlay"
-    onClick={() => setSelectedProject(null)}
-  >
-    <div
-      className="project-modal"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <button
-        className="close-modal"
-        onClick={() => setSelectedProject(null)}
-      >
-        ✕
-      </button>
+          <div
+            className="project-modal-overlay"
+            onClick={() => setSelectedProject(null)}
+          >
+            <div
+              className="project-modal"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="close-modal"
+                onClick={() => setSelectedProject(null)}
+              >
+                ✕
+              </button>
 
-      <h2>{selectedProject.title}</h2>
+              <h2>{selectedProject.title}</h2>
 
-  <p>{selectedProject.description}</p>
+              <p>{selectedProject.description}</p>
 
-{selectedProject.screenshots?.map((image, index) => (
-  <img
-    key={index}
-    src={image}
-    alt={`Screenshot ${index + 1}`}
-    style={{
-      width: "100%",
-      borderRadius: "12px",
-      marginTop: "20px",
-      marginBottom: "12px",
-    }}
-  />
-))}
+              {selectedProject.screenshots?.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Screenshot ${index + 1}`}
+                  style={{
+                    width: "100%",
+                    borderRadius: "12px",
+                    marginTop: "20px",
+                    marginBottom: "12px",
+                  }}
+                />
+              ))}
 
-      <div className="project-tags">
-        {selectedProject.stack.map((tech) => (
-          <span key={tech} className="tag-pill">
-            {tech}
-          </span>
-        ))}
-      </div>
+              <div className="project-tags">
+                {selectedProject.stack.map((tech) => (
+                  <span key={tech} className="tag-pill">
+                    {tech}
+                  </span>
+                ))}
+              </div>
 
-      <a
-        href={selectedProject.github}
-        target="_blank"
-        rel="noreferrer"
-        className="link-btn"
-      >
-        Github Repository
-      </a>
-    </div>
-  </div>
-)}
+              
+                href={selectedProject.github}
+                target="_blank"
+                rel="noreferrer"
+                className="link-btn"
+              >
+                Github Repository
+              </a>
+            </div>
+          </div>
+        )}
       </ClickSpark>
     </div>
   );

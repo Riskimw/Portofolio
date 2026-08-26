@@ -1,5 +1,5 @@
 /* taruh di paling atas App.css */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
 
 :root {
   /* warna — accent diambil dari colorStops Aurora */
@@ -17,9 +17,9 @@
   --shadow-ambient: 0 20px 60px -20px rgba(255, 148, 180, 0.18);
 
   /* font */
-  --font-display: 'Fraunces', serif;
-  --font-body: 'Instrument Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: "Fraunces", serif;
+  --font-body: "Instrument Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 }
 
 body {
@@ -140,26 +140,27 @@ body::-webkit-scrollbar {
 }
 
 .project-card {
-  height: 100%;
-  padding: 32px 28px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.4s ease, box-shadow 0.4s ease,
-    border-color 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  /* ...baris lain yang udah ada biarin aja... */
 }
 
-.project-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(255, 148, 180, 0.35);
-  box-shadow: 0 20px 40px -12px rgba(58, 41, 255, 0.35),
-    0 0 30px -8px rgba(255, 50, 50, 0.25);
+.project-card-spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    400px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(255, 148, 180, 0.14),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
 }
 
+.project-card:hover .project-card-spotlight {
+  opacity: 1;
+}
 .project-title {
   font-size: 1.25rem;
   font-weight: 600;
@@ -202,7 +203,9 @@ body::-webkit-scrollbar {
   text-decoration: none;
   color: #fff;
   background: linear-gradient(90deg, #3a29ff, #ff3232);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .link-btn:hover {
@@ -228,7 +231,9 @@ body::-webkit-scrollbar {
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 
 .reveal-visible {
@@ -261,13 +266,13 @@ body::-webkit-scrollbar {
 }
 
 .footer-role {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
   margin-bottom: 10px;
 }
 
 .footer-info p {
   margin: 0;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-info a {
@@ -283,7 +288,7 @@ body::-webkit-scrollbar {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);
   margin: 0;
-  padding:6px;
+  padding: 6px;
 }
 
 /* logo jalan */
@@ -298,8 +303,8 @@ body::-webkit-scrollbar {
 .tech-stack span {
   padding: 8px 16px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: white;
   font-size: 0.9rem;
   transition: all 0.3s ease;
@@ -308,7 +313,7 @@ body::-webkit-scrollbar {
 .tech-stack span:hover {
   transform: translateY(-3px);
   border-color: #ff94b4;
-  box-shadow: 0 0 15px rgba(255,148,180,0.3);
+  box-shadow: 0 0 15px rgba(255, 148, 180, 0.3);
 }
 .tech-marquee {
   width: 100%;
@@ -327,8 +332,8 @@ body::-webkit-scrollbar {
   white-space: nowrap;
   padding: 10px 18px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: white;
 }
 
@@ -344,8 +349,8 @@ body::-webkit-scrollbar {
 .tech-track span:hover {
   border-color: #ff94b4;
   box-shadow:
-    0 0 10px rgba(255,148,180,.4),
-    0 0 20px rgba(58,41,255,.3);
+    0 0 10px rgba(255, 148, 180, 0.4),
+    0 0 20px rgba(58, 41, 255, 0.3);
 }
 
 /* navbar */
