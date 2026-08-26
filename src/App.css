@@ -89,6 +89,25 @@ body::-webkit-scrollbar {
   display: none; /* Chrome, Edge, Safari */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+#home,
+#projects,
+#footer {
+  scroll-margin-top: 90px; /* sesuain kalau tinggi navbar kamu beda */
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-pink));
+  z-index: 10000;
+  transition: width 0.1s linear;
+}
 /* =====================================================
    Projects Section
    Palette pulled straight from the Aurora colorStops

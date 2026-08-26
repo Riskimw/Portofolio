@@ -36,7 +36,6 @@ const techStack = [
   { node: <SiPhp />, title: "PHP" },
 ];
 
-// Card project sendiri biar tiap card punya ref & mouse-tracking masing-masing
 function ProjectCard({ project, onViewDetails }) {
   const cardRef = useRef(null);
 
@@ -88,18 +87,62 @@ function ProjectCard({ project, onViewDetails }) {
 
 function App() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [fontsReady, setFontsReady] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState("home");
 
-  // fix: font custom (Fraunces dkk) kadang kelar load SETELAH SplitText
-  // ngukur posisi tiap karakter -> hasilnya numpuk/geser ("ngebug").
-  // refresh ScrollTrigger begitu font beneran ready biar di-re-measure ulang.
+  // fix utama: SplitText ngukur posisi tiap karakter PAS MOUNT, pake font
+  // yang aktif saat itu. Kalau font custom baru kelar load belakangan,
+  // ukuran huruf berubah tapi split-nya nggak di-remeasure -> numpuk.
+  // Solusi: baru mount SplitText SETELAH font beneran ready.
   useEffect(() => {
     document.fonts.ready.then(() => {
+      setFontsReady(true);
       ScrollTrigger.refresh();
     });
   }, []);
 
+  // scroll progress bar
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // active nav-link ngikutin section yang lagi keliatan
+  useEffect(() => {
+    const sectionIds = ["home", "projects", "footer"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -40% 0px" }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="Fullscreen">
+      <div
+        className="scroll-progress"
+        style={{ width: `${scrollProgress}%` }}
+      />
       <ClickSpark
         sparkColor="#fff"
         sparkSize={10}
@@ -125,17 +168,29 @@ function App() {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
-                  <a className="nav-link active" href="#">
+                  
+                    className={`nav-link ${activeSection === "home" ? "active" : ""}`}
+                    href="#home"
+                    aria-current={activeSection === "home" ? "page" : undefined}
+                  >
                     Home
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#projects">
+                  
+                    className={`nav-link ${activeSection === "projects" ? "active" : ""}`}
+                    href="#projects"
+                    aria-current={activeSection === "projects" ? "page" : undefined}
+                  >
                     Projects
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#footer">
+                  
+                    className={`nav-link ${activeSection === "footer" ? "active" : ""}`}
+                    href="#footer"
+                    aria-current={activeSection === "footer" ? "page" : undefined}
+                  >
                     About
                   </a>
                 </li>
@@ -151,7 +206,7 @@ function App() {
           amplitude={1.0}
           speed={0.5}
         />
-        <div className="hero-wrapper">
+        <div className="hero-wrapper" id="home">
           <div className="hero-section">
             <TiltedCard
               imageSrc={myPhoto}
@@ -185,19 +240,28 @@ function App() {
               />
               {/* Teks biasa di bawah TextType */}
               <div>
-                <SplitText
-                  text="I enjoy crafting applications with a focus on strong performance, clean architecture, and smooth user interaction to create experiences that feel refined and responsive."
-                  className="subtitle"
-                  delay={100}
-                  duration={0.6}
-                  ease="power3.out"
-                  splitType="words"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                  textAlign="left"
-                />
+                {fontsReady ? (
+                  <SplitText
+                    text="I enjoy crafting applications with a focus on strong performance, clean architecture, and smooth user interaction to create experiences that feel refined and responsive."
+                    className="subtitle"
+                    delay={100}
+                    duration={0.6}
+                    ease="power3.out"
+                    splitType="words"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                    textAlign="left"
+                  />
+                ) : (
+                  <p className="subtitle" style={{ opacity: 0 }}>
+                    I enjoy crafting applications with a focus on strong
+                    performance, clean architecture, and smooth user
+                    interaction to create experiences that feel refined and
+                    responsive.
+                  </p>
+                )}
               </div>
             </div>
             {/* Penutup Text Perkenalan */}
@@ -229,19 +293,25 @@ function App() {
             </div>
 
             <div className="section-heading">
-              <SplitText
-                text="Selected Projects"
-                className="section-title"
-                delay={40}
-                duration={0.6}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.2}
-                rootMargin="-50px"
-                textAlign="center"
-              />
+              {fontsReady ? (
+                <SplitText
+                  text="Selected Projects"
+                  className="section-title"
+                  delay={40}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.2}
+                  rootMargin="-50px"
+                  textAlign="center"
+                />
+              ) : (
+                <span className="section-title" style={{ opacity: 0 }}>
+                  Selected Projects
+                </span>
+              )}
               <Reveal delay={150}>
                 <p className="section-subtitle">
                   A few projects that reflect how I think about building
