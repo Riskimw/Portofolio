@@ -1,4 +1,73 @@
-/* Reset default margin body */
+/* taruh di paling atas App.css */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* warna — accent diambil dari colorStops Aurora */
+  --bg-void: #08080c;
+  --bg-surface: #121218;
+  --bg-surface-hover: #17171f;
+  --text-primary: #f1f0f5;
+  --text-muted: #8e8d9a;
+  --accent-pink: #ff94b4;
+  --accent-blue: #3a29ff;
+  --border-hairline: rgba(241, 240, 245, 0.08);
+
+  /* layout */
+  --radius-card: 16px;
+  --shadow-ambient: 0 20px 60px -20px rgba(255, 148, 180, 0.18);
+
+  /* font */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Instrument Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  background: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+.section-title,
+.tilted-card-demo-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.section-eyebrow,
+.nav-link,
+.tag-pill {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+
+.project-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-ambient);
+}
+
+.subtitle,
+.section-subtitle,
+.project-desc {
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+
+.tag-pill {
+  background: var(--bg-surface-hover);
+  color: var(--accent-pink);
+  border: 1px solid var(--border-hairline);
+}
+
+.link-btn {
+  font-family: var(--font-mono);
+  color: var(--accent-pink);
+}
 * {
   margin: 0;
   padding: 0;
@@ -110,9 +179,6 @@ body::-webkit-scrollbar {
   font-weight: 500;
   padding: 4px 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.8);
 }
 
 .project-desc {
