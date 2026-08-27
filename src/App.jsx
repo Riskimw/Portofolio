@@ -9,6 +9,7 @@ import ClickSpark from "./components/ClickSpark";
 import SplitText from "./components/SplitText";
 import Reveal from "./components/reveal";
 import LogoLoop from "./components/LogoLoop";
+
 import projects from "./data/projects";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -73,7 +74,10 @@ function ProjectCard({ project, onViewDetails }) {
 
       <div className="project-tags">
         {project.stack.map((tech) => (
-          <span className="tag-pill" key={tech}>
+          <span
+            className="tag-pill"
+            key={tech}
+          >
             {tech}
           </span>
         ))}
@@ -110,7 +114,7 @@ function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
 
-  // Tunggu font selesai loading sebelum SplitText di-mount.
+  // Font loading
   useEffect(() => {
     document.fonts.ready.then(() => {
       setFontsReady(true);
@@ -121,7 +125,7 @@ function App() {
     });
   }, []);
 
-  // Scroll progress bar
+  // Scroll progress
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -153,7 +157,7 @@ function App() {
     };
   }, []);
 
-  // Active navigation berdasarkan section yang sedang terlihat
+  // Active navigation
   useEffect(() => {
     const sectionIds = [
       "home",
@@ -161,28 +165,34 @@ function App() {
       "footer",
     ];
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        rootMargin: "-40% 0px -40% 0px",
-      }
-    );
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(
+                entry.target.id
+              );
+            }
+          });
+        },
+        {
+          rootMargin:
+            "-40% 0px -40% 0px",
+        }
+      );
 
     sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
+      const el =
+        document.getElementById(id);
 
       if (el) {
         observer.observe(el);
       }
     });
 
-    return () => observer.disconnect();
+    return () =>
+      observer.disconnect();
   }, []);
 
   return (
@@ -226,7 +236,7 @@ function App() {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon" />
             </button>
 
             <div
@@ -243,11 +253,6 @@ function App() {
                         : ""
                     }`}
                     href="#home"
-                    aria-current={
-                      activeSection === "home"
-                        ? "page"
-                        : undefined
-                    }
                   >
                     Home
                   </a>
@@ -261,11 +266,6 @@ function App() {
                         : ""
                     }`}
                     href="#projects"
-                    aria-current={
-                      activeSection === "projects"
-                        ? "page"
-                        : undefined
-                    }
                   >
                     Projects
                   </a>
@@ -279,11 +279,6 @@ function App() {
                         : ""
                     }`}
                     href="#footer"
-                    aria-current={
-                      activeSection === "footer"
-                        ? "page"
-                        : undefined
-                    }
                   >
                     About
                   </a>
@@ -295,7 +290,7 @@ function App() {
         </nav>
 
         {/* =========================
-            AURORA BACKGROUND
+            AURORA
         ========================= */}
         <Aurora
           colorStops={[
@@ -317,7 +312,6 @@ function App() {
         >
           <div className="hero-section">
 
-            {/* Profile Card */}
             <TiltedCard
               imageSrc={myPhoto}
               altText=""
@@ -338,7 +332,6 @@ function App() {
               }
             />
 
-            {/* Hero Text */}
             <div className="Text1">
 
               <TextType
@@ -382,11 +375,12 @@ function App() {
                       opacity: 0,
                     }}
                   >
-                    I enjoy crafting applications with a
-                    focus on strong performance, clean
-                    architecture, and smooth user
-                    interaction to create experiences
-                    that feel refined and responsive.
+                    I enjoy crafting applications
+                    with a focus on strong
+                    performance, clean architecture,
+                    and smooth user interaction to
+                    create experiences that feel
+                    refined and responsive.
                   </p>
                 )}
               </div>
@@ -396,7 +390,7 @@ function App() {
         </div>
 
         {/* =========================
-            PROJECTS SECTION
+            PROJECTS
         ========================= */}
         <section
           className="projects-section"
@@ -404,7 +398,7 @@ function App() {
         >
           <div className="container">
 
-            {/* Portfolio Label */}
+            {/* Portfolio */}
             <div className="section-heading">
               <Reveal>
                 <span className="section-eyebrow">
@@ -431,20 +425,19 @@ function App() {
 
             {/* =========================
                 SELECTED PROJECTS
-                TEXT BIASA
             ========================= */}
             <div className="section-heading">
 
-              <h2 className="section-title">
+              <h2 className="selected-projects-title">
                 Selected Projects
               </h2>
 
               <Reveal delay={150}>
                 <p className="section-subtitle">
-                  A few projects that reflect how I
-                  think about building software — from
-                  mobile apps to the Laravel APIs running
-                  behind them.
+                  A few projects that reflect how
+                  I think about building software —
+                  from mobile apps to the Laravel
+                  APIs running behind them.
                 </p>
               </Reveal>
 
@@ -453,28 +446,30 @@ function App() {
             {/* Project Grid */}
             <div className="row g-4 projects-grid">
 
-              {projects.map((project, index) => (
-                <div
-                  className="col-md-6 col-lg-4"
-                  key={
-                    project.title + index
-                  }
-                >
-                  <Reveal
-                    delay={index * 120}
+              {projects.map(
+                (project, index) => (
+                  <div
+                    className="col-md-6 col-lg-4"
+                    key={
+                      project.title +
+                      index
+                    }
                   >
-                    <ProjectCard
-                      project={project}
-                      onViewDetails={
-                        setSelectedProject
-                      }
-                    />
-                  </Reveal>
-                </div>
-              ))}
+                    <Reveal
+                      delay={index * 120}
+                    >
+                      <ProjectCard
+                        project={project}
+                        onViewDetails={
+                          setSelectedProject
+                        }
+                      />
+                    </Reveal>
+                  </div>
+                )
+              )}
 
             </div>
-
           </div>
         </section>
 
@@ -497,14 +492,14 @@ function App() {
                   rel="noreferrer"
                   aria-label="GitHub"
                 >
-                  <i className="bi bi-github"></i>
+                  <i className="bi bi-github" />
                 </a>
 
                 <a
                   href="mailto:riskimw05@gmail.com"
                   aria-label="Email"
                 >
-                  <i className="bi bi-envelope-fill"></i>
+                  <i className="bi bi-envelope-fill" />
                 </a>
 
                 <a
@@ -513,7 +508,7 @@ function App() {
                   rel="noreferrer"
                   aria-label="WhatsApp"
                 >
-                  <i className="bi bi-whatsapp"></i>
+                  <i className="bi bi-whatsapp" />
                 </a>
 
                 <a
@@ -522,15 +517,15 @@ function App() {
                   rel="noreferrer"
                   aria-label="Instagram"
                 >
-                  <i className="bi bi-instagram"></i>
+                  <i className="bi bi-instagram" />
                 </a>
 
               </div>
             </div>
 
             <p className="footer-text">
-              © {new Date().getFullYear()} Riski
-              Muhammad Wiyanto
+              © {new Date().getFullYear()}{" "}
+              Riski Muhammad Wiyanto
             </p>
 
           </div>
@@ -553,7 +548,6 @@ function App() {
               }
             >
 
-              {/* Close Button */}
               <button
                 className="close-modal"
                 onClick={() =>
@@ -564,17 +558,14 @@ function App() {
                 ✕
               </button>
 
-              {/* Project Title */}
               <h2>
                 {selectedProject.title}
               </h2>
 
-              {/* Description */}
               <p>
                 {selectedProject.description}
               </p>
 
-              {/* Screenshots */}
               {selectedProject.screenshots?.map(
                 (image, index) => (
                   <img
@@ -593,9 +584,7 @@ function App() {
                 )
               )}
 
-              {/* Tech Stack */}
               <div className="project-tags">
-
                 {selectedProject.stack.map(
                   (tech) => (
                     <span
@@ -606,12 +595,12 @@ function App() {
                     </span>
                   )
                 )}
-
               </div>
 
-              {/* GitHub */}
               <a
-                href={selectedProject.github}
+                href={
+                  selectedProject.github
+                }
                 target="_blank"
                 rel="noreferrer"
                 className="link-btn"

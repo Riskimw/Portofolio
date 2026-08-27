@@ -1,25 +1,58 @@
-/* taruh di paling atas App.css */
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
 
+/* =========================
+   ROOT
+========================= */
+
 :root {
-  /* warna — accent diambil dari colorStops Aurora */
   --bg-void: #08080c;
   --bg-surface: #121218;
   --bg-surface-hover: #17171f;
+
   --text-primary: #f1f0f5;
   --text-muted: #8e8d9a;
+
   --accent-pink: #ff94b4;
   --accent-blue: #3a29ff;
-  --border-hairline: rgba(241, 240, 245, 0.08);
 
-  /* layout */
+  --border-hairline: rgba(
+    241,
+    240,
+    245,
+    0.08
+  );
+
   --radius-card: 16px;
-  --shadow-ambient: 0 20px 60px -20px rgba(255, 148, 180, 0.18);
 
-  /* font */
+  --shadow-ambient:
+    0 20px 60px -20px
+    rgba(255, 148, 180, 0.18);
+
   --font-display: "Fraunces", serif;
   --font-body: "Instrument Sans", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+}
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -28,7 +61,14 @@ body {
   font-family: var(--font-body);
 }
 
-.section-title,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================
+   GENERAL TYPOGRAPHY
+========================= */
+
 .tilted-card-demo-text {
   font-family: var(--font-display);
   font-weight: 600;
@@ -44,76 +84,10 @@ body {
   font-size: 0.72rem;
 }
 
-.project-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-ambient);
-}
+/* =========================
+   PROJECTS
+========================= */
 
-.subtitle,
-.section-subtitle,
-.project-desc {
-  color: var(--text-muted);
-  font-family: var(--font-body);
-}
-
-.tag-pill {
-  background: var(--bg-surface-hover);
-  color: var(--accent-pink);
-  border: 1px solid var(--border-hairline);
-}
-
-.link-btn {
-  font-family: var(--font-mono);
-  color: var(--accent-pink);
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(
-    to bottom,
-
-    #1a0225 100%
-  );
-}
-body::-webkit-scrollbar {
-  display: none; /* Chrome, Edge, Safari */
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-#home,
-#projects,
-#footer {
-  scroll-margin-top: 90px; /* sesuain kalau tinggi navbar kamu beda */
-}
-
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-blue), var(--accent-pink));
-  z-index: 10000;
-  transition: width 0.1s linear;
-}
-/* =====================================================
-   Projects Section
-   Palette pulled straight from the Aurora colorStops
-   (#3A29FF / #FF94B4 / #FF3232) so this section reads as
-   a continuation of the hero, not a new theme.
-===================================================== */
 .projects-section {
   position: relative;
   padding: 120px 0 80px;
@@ -136,56 +110,147 @@ html {
   margin-bottom: 14px;
 }
 
-.section-title {
+/* =========================
+   SELECTED PROJECTS TITLE
+   SENGAJA CLASS BARU
+========================= */
+
+.selected-projects-title {
+  all: unset;
+
   display: block;
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+
+  text-align: center;
+
+  font-family: var(--font-display);
+  font-size: clamp(
+    2rem,
+    4vw,
+    2.75rem
+  );
+
   font-weight: 700;
   line-height: 1.15;
-  background: linear-gradient(90deg, #3a29ff, #ff94b4, #ff3232);
+
+  color: #ff94b4;
+
+  background: linear-gradient(
+    90deg,
+    #3a29ff,
+    #ff94b4,
+    #ff3232
+  );
+
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================
+   SUBTITLE
+========================= */
+
+.subtitle,
+.section-subtitle,
+.project-desc {
+  color: var(--text-muted);
+  font-family: var(--font-body);
 }
 
 .section-subtitle {
   margin-top: 18px;
   font-size: 1rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(
+    255,
+    255,
+    255,
+    0.65
+  );
 }
+
+/* =========================
+   PROJECT GRID
+========================= */
 
 .projects-grid {
   margin-top: 8px;
 }
 
+/* =========================
+   PROJECT CARD
+========================= */
+
 .project-card {
   position: relative;
   overflow: hidden;
-  /* ...baris lain yang udah ada biarin aja... */
+
+  background: var(--bg-surface);
+
+  border: 1px solid
+    var(--border-hairline);
+
+  border-radius: var(--radius-card);
+
+  box-shadow: var(--shadow-ambient);
 }
+
+/* =========================
+   SPOTLIGHT
+========================= */
 
 .project-card-spotlight {
   position: absolute;
+
   inset: 0;
+
   background: radial-gradient(
-    400px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    rgba(255, 148, 180, 0.14),
+    400px circle at
+      var(--spot-x, 50%)
+      var(--spot-y, 50%),
+    rgba(
+      255,
+      148,
+      180,
+      0.14
+    ),
     transparent 70%
   );
+
   opacity: 0;
-  transition: opacity 0.35s ease;
+
+  transition:
+    opacity 0.35s ease;
+
   pointer-events: none;
 }
 
-.project-card:hover .project-card-spotlight {
+.project-card:hover
+  .project-card-spotlight {
   opacity: 1;
 }
+
+/* =========================
+   PROJECT TITLE
+========================= */
+
 .project-title {
   font-size: 1.25rem;
   font-weight: 600;
   color: #fff;
   margin-bottom: 14px;
 }
+
+/* =========================
+   TAGS
+========================= */
 
 .project-tags {
   display: flex;
@@ -195,19 +260,45 @@ html {
 }
 
 .tag-pill {
+  background:
+    var(--bg-surface-hover);
+
+  color: var(--accent-pink);
+
+  border: 1px solid
+    var(--border-hairline);
+
   font-size: 0.72rem;
   font-weight: 500;
+
   padding: 4px 12px;
+
   border-radius: 999px;
 }
 
+/* =========================
+   PROJECT DESCRIPTION
+========================= */
+
 .project-desc {
   flex-grow: 1;
+
   font-size: 0.92rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.65);
+
+  color: rgba(
+    255,
+    255,
+    255,
+    0.65
+  );
+
   margin-bottom: 22px;
 }
+
+/* =========================
+   PROJECT LINKS
+========================= */
 
 .project-links {
   display: flex;
@@ -215,13 +306,29 @@ html {
 }
 
 .link-btn {
+  font-family: var(--font-mono);
+
   font-size: 0.85rem;
   font-weight: 500;
+
   padding: 9px 18px;
+
   border-radius: 999px;
+
   text-decoration: none;
+
   color: #fff;
-  background: linear-gradient(90deg, #3a29ff, #ff3232);
+
+  background: linear-gradient(
+    90deg,
+    #3a29ff,
+    #ff3232
+  );
+
+  border: none;
+
+  cursor: pointer;
+
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
@@ -235,7 +342,14 @@ html {
 
 .link-btn-outline {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  border: 1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.25
+    );
 }
 
 .link-btn:focus-visible {
@@ -243,13 +357,16 @@ html {
   outline-offset: 2px;
 }
 
-/* =====================================================
-   Scroll reveal — same fade-up curve already used by
-   SplitText (opacity 0, y 40 -> opacity 1, y 0)
-===================================================== */
+/* =========================
+   REVEAL
+========================= */
+
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
+
+  transform:
+    translateY(40px);
+
   transition:
     opacity 0.7s ease,
     transform 0.7s ease;
@@ -257,25 +374,124 @@ html {
 
 .reveal-visible {
   opacity: 1;
-  transform: translateY(0);
+
+  transform:
+    translateY(0);
 }
 
-/* =====================================================
-   Footer
-===================================================== */
+/* =========================
+   TECH MARQUEE
+========================= */
+
+.tech-marquee {
+  width: 100%;
+
+  overflow: hidden;
+
+  margin: 25px 0;
+}
+
+.tech-track {
+  display: flex;
+
+  width: max-content;
+
+  gap: 20px;
+
+  animation:
+    scrollTech
+    20s linear infinite;
+}
+
+.tech-track span {
+  white-space: nowrap;
+
+  padding: 10px 18px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.06
+    );
+
+  border: 1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+
+  color: white;
+}
+
+@keyframes scrollTech {
+  from {
+    transform:
+      translateX(0);
+  }
+
+  to {
+    transform:
+      translateX(-40%);
+  }
+}
+
+.tech-track span:hover {
+  border-color:
+    #ff94b4;
+
+  box-shadow:
+    0 0 10px
+      rgba(
+        255,
+        148,
+        180,
+        0.4
+      ),
+    0 0 20px
+      rgba(
+        58,
+        41,
+        255,
+        0.3
+      );
+}
+
+/* =========================
+   FOOTER
+========================= */
+
 .footer {
   padding: 32px 0 28px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-top:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
 }
 
 .footer-info {
   display: flex;
+
   flex-direction: column;
+
   gap: 8px;
 }
+
 .footer-info i {
   color: #ff94b4;
+
   margin-right: 10px;
+
   font-size: 1.1rem;
 }
 
@@ -285,134 +501,131 @@ html {
 }
 
 .footer-role {
-  color: rgba(255, 255, 255, 0.7);
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.7
+    );
+
   margin-bottom: 10px;
 }
 
 .footer-info p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.8);
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.8
+    );
 }
 
 .footer-info a {
   color: #ff94b4;
+
   text-decoration: none;
+
   margin-left: 6px;
 }
 
 .footer-info a:hover {
   text-decoration: underline;
 }
+
 .footer-text {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.5
+    );
+
   margin: 0;
+
   padding: 6px;
 }
 
-/* logo jalan */
-.tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin: 24px 0;
-}
+/* =========================
+   NAVBAR
+========================= */
 
-.tech-stack span {
-  padding: 8px 16px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: white;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-
-.tech-stack span:hover {
-  transform: translateY(-3px);
-  border-color: #ff94b4;
-  box-shadow: 0 0 15px rgba(255, 148, 180, 0.3);
-}
-.tech-marquee {
-  width: 100%;
-  overflow: hidden;
-  margin: 25px 0;
-}
-
-.tech-track {
-  display: flex;
-  width: max-content;
-  gap: 20px;
-  animation: scrollTech 20s linear infinite;
-}
-
-.tech-track span {
-  white-space: nowrap;
-  padding: 10px 18px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: white;
-}
-
-@keyframes scrollTech {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-40%);
-  }
-}
-.tech-track span:hover {
-  border-color: #ff94b4;
-  box-shadow:
-    0 0 10px rgba(255, 148, 180, 0.4),
-    0 0 20px rgba(58, 41, 255, 0.3);
-}
-
-/* navbar */
 .link-btn-outline {
   cursor: pointer;
 }
+
+/* =========================
+   MODAL
+========================= */
+
 .project-modal-overlay {
   position: fixed;
+
   inset: 0;
 
-  background: rgba(0, 0, 0, 0.7);
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      0.7
+    );
 
   display: flex;
+
   justify-content: center;
+
   align-items: center;
 
   z-index: 9999;
 
-  backdrop-filter: blur(10px);
+  backdrop-filter:
+    blur(10px);
 }
 
 .project-modal {
   position: relative;
 
   width: 90%;
+
   max-width: 900px;
 
-  max-height: 85vh; /* penting */
+  max-height: 85vh;
 
-  overflow-y: auto; /* penting */
+  overflow-y: auto;
 
   padding: 40px;
 
   border-radius: 20px;
 
-  background: rgba(255, 255, 255, 0.05);
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.05
+    );
 
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
 
   color: white;
 
-  backdrop-filter: blur(20px);
+  backdrop-filter:
+    blur(20px);
 }
+
 .project-modal::-webkit-scrollbar {
   display: none;
 }
@@ -424,6 +637,7 @@ html {
   right: 15px;
 
   border: none;
+
   background: transparent;
 
   color: white;
@@ -432,23 +646,64 @@ html {
 
   cursor: pointer;
 }
-/* penutup navbar */
+
+/* =========================
+   SCROLL PROGRESS
+========================= */
+
+.scroll-progress {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--accent-blue),
+      var(--accent-pink)
+    );
+
+  z-index: 10000;
+
+  transition:
+    width 0.1s linear;
+}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 576px) {
   .footer-inner {
     flex-direction: column;
+
     text-align: center;
+  }
+
+  .selected-projects-title {
+    font-size: 2rem;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
   .reveal,
   .project-card,
   .link-btn {
     transition: none !important;
   }
+
   .reveal {
     opacity: 1;
+
     transform: none;
   }
 }
