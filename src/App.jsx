@@ -428,12 +428,16 @@ function App() {
             ========================= */}
             <div className="section-heading">
 
+              <h2 className="selected-projects-title">
+                Selected Projects
+              </h2>
+
               <Reveal delay={150}>
                 <p className="section-subtitle">
                   A few projects that reflect how
                   I think about building software —
                   from mobile apps to the Laravel
-                  APIs running behind them. test
+                  APIs running behind them.
                 </p>
               </Reveal>
 
