@@ -426,60 +426,18 @@ function App() {
             {/* =========================
                 SELECTED PROJECTS
             ========================= */}
-            <div
-  style={{
-    width: "100%",
-    textAlign: "center",
-    margin: "80px 0 56px",
-    position: "relative",
-    zIndex: 9999,
-  }}
->
-  <span
-    style={{
-      display: "block",
-      width: "100%",
-      color: "#ffffff",
-      background: "none",
-      fontFamily: "Arial, sans-serif",
-      fontSize: "44px",
-      fontWeight: "700",
-      lineHeight: "1.2",
-      letterSpacing: "normal",
-      textTransform: "none",
-      textAlign: "center",
-      whiteSpace: "normal",
-      wordBreak: "normal",
-      overflow: "visible",
-      position: "relative",
-      transform: "none",
-      opacity: 1,
-      visibility: "visible",
-      WebkitTextFillColor: "#ffffff",
-    }}
-  >
-    Selected Projects
-  </span>
+            <div className="section-heading">
 
-  <p
-    style={{
-      margin: "18px 0 0",
-      color: "rgba(255,255,255,0.65)",
-      fontFamily: "Arial, sans-serif",
-      fontSize: "16px",
-      lineHeight: "1.6",
-      textAlign: "center",
-      transform: "none",
-      opacity: 1,
-      visibility: "visible",
-    }}
-  >
-    A few projects that reflect how I think about building
-    software — from mobile apps to the Laravel APIs running
-    behind them.
-  </p>
-</div>
+              <Reveal delay={150}>
+                <p className="section-subtitle">
+                  A few projects that reflect how
+                  I think about building software —
+                  from mobile apps to the Laravel
+                  APIs running behind them.
+                </p>
+              </Reveal>
 
+            </div>
 
             {/* Project Grid */}
             <div className="row g-4 projects-grid">
