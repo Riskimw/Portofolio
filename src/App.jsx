@@ -293,41 +293,29 @@ function App() {
             </div>
 
             <div className="section-heading">
-              {fontsReady ? (
-                <SplitText
-                  text="Selected Projects"
-                  className="section-title"
-                  delay={40}
-                  duration={0.6}
-                  ease="power3.out"
-                  splitType="chars"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.2}
-                  rootMargin="-50px"
-                  textAlign="center"
-                />
-              ) : (
-                <span className="section-title" style={{ opacity: 0 }}>
-                  Selected Projects
-                </span>
-              )}
-              <Reveal delay={150}>
-                <p className="section-subtitle">
-                  A few projects that reflect how I think about building
-                  software — from mobile apps to the Laravel APIs running
-                  behind them.
-                </p>
-              </Reveal>
-              <div style={{ marginTop: '4rem' }}>
-                {/* <DecryptedText
-                text="This text animates when in view"
-                revealDirection="start"
-                sequential
-                useOriginalCharsOnly={false}
-                /> */}
-              </div>
-            </div>
+  <SplitText
+    text="Selected Projects"
+    className="section-title"
+    delay={40}
+    duration={0.6}
+    ease="power3.out"
+    splitType="chars"
+    from={{ opacity: 0, y: 40 }}
+    to={{ opacity: 1, y: 0 }}
+    threshold={0.2}
+    rootMargin="-50px"
+    textAlign="center"
+  />
+
+  <Reveal delay={150}>
+    <p className="section-subtitle">
+      A few projects that reflect how I think about building
+      software — from mobile apps to the Laravel APIs running
+      behind them.
+    </p>
+  </Reveal>
+</div>
+
 
             <div className="row g-4 projects-grid">
               {projects.map((project, index) => (
