@@ -27,7 +27,7 @@ import {
 } from "react-icons/si";
 
 import "./App.css";
-import "./components/iki.css";
+import "./iki.css"; // <-- Pastikan path ini sesuai dengan lokasi file iki.css Anda
 
 gsap.registerPlugin(ScrollTrigger);
 
