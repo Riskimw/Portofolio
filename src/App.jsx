@@ -8,7 +8,7 @@ import TiltedCard from "./components/TiltedCard";
 import ClickSpark from "./components/ClickSpark";
 import SplitText from "./components/SplitText";
 import Reveal from "./components/reveal";
-import LogoLoop from "./components/LogoLoop";
+// import LogoLoop from "./components/LogoLoop";
 
 import projects from "./data/projects";
 
