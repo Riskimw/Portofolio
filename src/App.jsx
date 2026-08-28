@@ -200,12 +200,12 @@ function App() {
     <div className="Fullscreen">
 
       {/* Scroll Progress */}
-      <div
+      {/* <div
         className="scroll-progress"
         style={{
           width: `${scrollProgress}%`,
         }}
-      />
+      /> */}
 
       <ClickSpark
         sparkColor="#fff"
@@ -438,7 +438,7 @@ function App() {
                   A few projects that reflect how
                   I think about building software —
                   from mobile apps to the Laravel
-                  APIs running behind them. test
+                  APIs running behind them.
                 </p>
               </Reveal>
 
