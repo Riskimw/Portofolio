@@ -8,7 +8,7 @@ import TiltedCard from "./components/TiltedCard";
 import ClickSpark from "./components/ClickSpark";
 import SplitText from "./components/SplitText";
 import Reveal from "./components/reveal";
-import LogoLoop from "./components/logoloop";
+// import LogoLoop from "./components/logoloop";
 
 import projects from "./data/projects";
 
@@ -407,7 +407,7 @@ function App() {
               </Reveal>
             </div>
 
-            {/* Tech Stack */}
+            {/* Tech Stack
             <div className="tech-marquee">
               <LogoLoop
                 logos={techStack}
@@ -421,7 +421,7 @@ function App() {
                 scaleOnHover
                 ariaLabel="Tech stack"
               />
-            </div>
+            </div> */}
 
             {/* =========================
                 SELECTED PROJECTS
