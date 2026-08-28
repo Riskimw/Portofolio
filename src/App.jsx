@@ -27,6 +27,7 @@ import {
 } from "react-icons/si";
 
 import "./App.css";
+import "./iki.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
