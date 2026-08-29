@@ -9,6 +9,7 @@ import ClickSpark from "./components/ClickSpark";
 import SplitText from "./components/SplitText";
 import Reveal from "./components/reveal";
 import LogoLoop from "./components/LogoLoop";
+import GradientWaves from "./components/GradientWaves"; // <-- Import Gradient Waves
 
 import projects from "./data/projects";
 
@@ -59,34 +60,20 @@ function ProjectCard({ project, onViewDetails }) {
   };
 
   return (
-    <div
-      className="project-card"
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-    >
-      <div
-        className="project-card-spotlight"
-        aria-hidden="true"
-      />
+    <div className="project-card" ref={cardRef} onMouseMove={handleMouseMove}>
+      <div className="project-card-spotlight" aria-hidden="true" />
 
-      <h3 className="project-title">
-        {project.title}
-      </h3>
+      <h3 className="project-title">{project.title}</h3>
 
       <div className="project-tags">
         {project.stack.map((tech) => (
-          <span
-            className="tag-pill"
-            key={tech}
-          >
+          <span className="tag-pill" key={tech}>
             {tech}
           </span>
         ))}
       </div>
 
-      <p className="project-desc">
-        {project.description}
-      </p>
+      <p className="project-desc">{project.description}</p>
 
       <div className="project-links">
         <a
@@ -112,7 +99,6 @@ function ProjectCard({ project, onViewDetails }) {
 function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [fontsReady, setFontsReady] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
 
   // Font loading
@@ -126,87 +112,36 @@ function App() {
     });
   }, []);
 
-  // Scroll progress
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-
-      const docHeight =
-        document.documentElement.scrollHeight -
-        window.innerHeight;
-
-      setScrollProgress(
-        docHeight > 0
-          ? (scrollTop / docHeight) * 100
-          : 0
-      );
-    };
-
-    window.addEventListener(
-      "scroll",
-      handleScroll,
-      { passive: true }
-    );
-
-    handleScroll();
-
-    return () => {
-      window.removeEventListener(
-        "scroll",
-        handleScroll
-      );
-    };
-  }, []);
-
   // Active navigation
   useEffect(() => {
-    const sectionIds = [
-      "home",
-      "projects",
-      "footer",
-    ];
+    const sectionIds = ["home", "projects", "footer"];
 
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(
-                entry.target.id
-              );
-            }
-          });
-        },
-        {
-          rootMargin:
-            "-40% 0px -40% 0px",
-        }
-      );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-40% 0px -40% 0px",
+      },
+    );
 
     sectionIds.forEach((id) => {
-      const el =
-        document.getElementById(id);
+      const el = document.getElementById(id);
 
       if (el) {
         observer.observe(el);
       }
     });
 
-    return () =>
-      observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div className="Fullscreen">
-
-      {/* Scroll Progress */}
-      {/* <div
-        className="scroll-progress"
-        style={{
-          width: `${scrollProgress}%`,
-        }}
-      /> */}
-
       <ClickSpark
         sparkColor="#fff"
         sparkSize={10}
@@ -214,17 +149,12 @@ function App() {
         sparkCount={8}
         duration={400}
       >
-
         {/* =========================
             NAVBAR
         ========================= */}
         <nav className="navbar navbar-expand-lg fixed-top bg-transparent">
           <div className="container">
-
-            <a
-              className="navbar-brand"
-              href="#home"
-            >
+            <a className="navbar-brand" href="#home">
               Surinas
             </a>
 
@@ -240,18 +170,12 @@ function App() {
               <span className="navbar-toggler-icon" />
             </button>
 
-            <div
-              className="collapse navbar-collapse"
-              id="navbarNav"
-            >
+            <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">
-
                 <li className="nav-item">
                   <a
                     className={`nav-link ${
-                      activeSection === "home"
-                        ? "active"
-                        : ""
+                      activeSection === "home" ? "active" : ""
                     }`}
                     href="#home"
                   >
@@ -262,9 +186,7 @@ function App() {
                 <li className="nav-item">
                   <a
                     className={`nav-link ${
-                      activeSection === "projects"
-                        ? "active"
-                        : ""
+                      activeSection === "projects" ? "active" : ""
                     }`}
                     href="#projects"
                   >
@@ -275,16 +197,13 @@ function App() {
                 <li className="nav-item">
                   <a
                     className={`nav-link ${
-                      activeSection === "footer"
-                        ? "active"
-                        : ""
+                      activeSection === "footer" ? "active" : ""
                     }`}
                     href="#footer"
                   >
                     About
                   </a>
                 </li>
-
               </ul>
             </div>
           </div>
@@ -294,11 +213,7 @@ function App() {
             AURORA
         ========================= */}
         <Aurora
-          colorStops={[
-            "#3A29FF",
-            "#FF94B4",
-            "#FF3232",
-          ]}
+          colorStops={["#ed67ff", "#9e88d0", "#5227FF"]}
           blend={0.9}
           amplitude={1.0}
           speed={0.5}
@@ -307,12 +222,8 @@ function App() {
         {/* =========================
             HERO
         ========================= */}
-        <div
-          className="hero-wrapper"
-          id="home"
-        >
+        <div className="hero-wrapper" id="home">
           <div className="hero-section">
-
             <TiltedCard
               imageSrc={myPhoto}
               altText=""
@@ -327,14 +238,11 @@ function App() {
               showTooltip={true}
               displayOverlayContent={true}
               overlayContent={
-                <p className="tilted-card-demo-text">
-                  Riski Muhammad Wiyanto
-                </p>
+                <p className="tilted-card-demo-text">Riski Muhammad Wiyanto</p>
               }
             />
 
             <div className="Text1">
-
               <TextType
                 text={[
                   "Hello, I'm Riski.",
@@ -376,161 +284,174 @@ function App() {
                       opacity: 0,
                     }}
                   >
-                    I enjoy crafting applications
-                    with a focus on strong
-                    performance, clean architecture,
-                    and smooth user interaction to
-                    create experiences that feel
-                    refined and responsive.
+                    I enjoy crafting applications with a focus on strong
+                    performance, clean architecture, and smooth user interaction
+                    to create experiences that feel refined and responsive.
                   </p>
                 )}
               </div>
-
             </div>
           </div>
         </div>
 
         {/* =========================
-            PROJECTS
+            WRAPPER WAVES BACKGROUND
+            (Membungkus Projects & Footer)
         ========================= */}
-        <section
-          className="projects-section"
-          id="projects"
+        <div
+          style={{ position: "relative", width: "100%", overflow: "hidden" }}
         >
-          <div className="container">
+          {/* Latar Belakang Ombak ditaruh melayang di posisi paling bawah */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              width: "100%",
+              height: "600px",
+              zIndex: 0,
+              pointerEvents: "none",
+            }}
+          >
+            <GradientWaves
+              horizonColor="#5227FF"
+              waveColor="#FF9FFC"
+              crestColor="#FFFFFF"
+              speed={0.4}
+              amplitude={1.3}
+              waveScale={0.75}
+              waveRatio={0.8}
+              swell={29.5}
+              turbulence={21.5}
+              tilt={1.3}
+              zoom={1.2}
+              height={3.8}
+              fogDepth={15}
+              detail="medium"
+              brightness={1}
+              opacity={1}
+              mouseInteraction
+              parallaxStrength={0.5}
+              grain
+              grainIntensity={0.05}
+            />
+          </div>
 
-            {/* Portfolio */}
-            <div className="section-heading">
-              <Reveal>
-                <span className="section-eyebrow">
-                  Portfolio
-                </span>
-              </Reveal>
-            </div>
+          {/* Konten Project & Footer dimajukan (Z-Index 1) */}
+          <div style={{ position: "relative", zIndex: 1 }}>
+            {/* =========================
+                PROJECTS
+            ========================= */}
+            <section className="projects-section" id="projects">
+              <div className="container">
+                {/* Portfolio */}
+                <div className="section-heading">
+                  <Reveal>
+                    <span className="section-eyebrow">Portfolio</span>
+                  </Reveal>
+                </div>
 
-            {/* Tech Stack */}
-            <div className="tech-marquee">
-              <LogoLoop
-                logos={techStack}
-                speed={60}
-                direction="left"
-                logoHeight={32}
-                gap={48}
-                pauseOnHover
-                fadeOut
-                fadeOutColor="#08080c"
-                scaleOnHover
-                ariaLabel="Tech stack"
-              />
-            </div>
+                {/* Tech Stack */}
+                <div className="tech-marquee">
+                  <LogoLoop
+                    logos={techStack}
+                    speed={60}
+                    direction="left"
+                    logoHeight={32}
+                    gap={48}
+                    pauseOnHover
+                    fadeOut
+                    fadeOutColor="transparent"
+                    scaleOnHover
+                    ariaLabel="Tech stack"
+                  />
+                </div>
+
+                {/* =========================
+                    SELECTED PROJECTS
+                ========================= */}
+                <div className="section-heading">
+                  <h2 className="selected-projects-title">Selected Projects</h2>
+
+                  <Reveal delay={150}>
+                    <p className="section-subtitle">
+                      A few projects that reflect how I think about building
+                      software — from mobile apps to the Laravel APIs running
+                      behind them.
+                    </p>
+                  </Reveal>
+                </div>
+
+                {/* Project Grid */}
+                <div className="row g-4 projects-grid">
+                  {projects.map((project, index) => (
+                    <div
+                      className="col-md-6 col-lg-4"
+                      key={project.title + index}
+                    >
+                      <Reveal delay={index * 120}>
+                        <ProjectCard
+                          project={project}
+                          onViewDetails={setSelectedProject}
+                        />
+                      </Reveal>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
 
             {/* =========================
-                SELECTED PROJECTS
+                FOOTER
             ========================= */}
-            <div className="section-heading">
-
-              <h2 className="selected-projects-title">
-                Selected Projects
-              </h2>
-
-              <Reveal delay={150}>
-                <p className="section-subtitle">
-                  A few projects that reflect how
-                  I think about building software —
-                  from mobile apps to the Laravel
-                  APIs running behind them.
-                </p>
-              </Reveal>
-
-            </div>
-
-            {/* Project Grid */}
-            <div className="row g-4 projects-grid">
-
-              {projects.map(
-                (project, index) => (
-                  <div
-                    className="col-md-6 col-lg-4"
-                    key={
-                      project.title +
-                      index
-                    }
-                  >
-                    <Reveal
-                      delay={index * 120}
+            <footer
+              className="footer"
+              id="footer"
+              style={{ borderTop: "none", background: "transparent" }}
+            >
+              <div className="container footer-inner">
+                <div className="footer-info">
+                  <div className="footer-socials">
+                    <a
+                      href="https://github.com/Riskimw"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="GitHub"
                     >
-                      <ProjectCard
-                        project={project}
-                        onViewDetails={
-                          setSelectedProject
-                        }
-                      />
-                    </Reveal>
+                      <i className="bi bi-github" />
+                    </a>
+
+                    <a href="mailto:riskimw05@gmail.com" aria-label="Email">
+                      <i className="bi bi-envelope-fill" />
+                    </a>
+
+                    <a
+                      href="https://wa.me/6283153192700"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="WhatsApp"
+                    >
+                      <i className="bi bi-whatsapp" />
+                    </a>
+
+                    <a
+                      href="https://instagram.com/c.syrmw"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Instagram"
+                    >
+                      <i className="bi bi-instagram" />
+                    </a>
                   </div>
-                )
-              )}
+                </div>
 
-            </div>
-          </div>
-        </section>
-
-        {/* =========================
-            FOOTER
-        ========================= */}
-        <footer
-          className="footer"
-          id="footer"
-        >
-          <div className="container footer-inner">
-
-            <div className="footer-info">
-
-              <div className="footer-socials">
-
-                <a
-                  href="https://github.com/Riskimw"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="GitHub"
-                >
-                  <i className="bi bi-github" />
-                </a>
-
-                <a
-                  href="mailto:riskimw05@gmail.com"
-                  aria-label="Email"
-                >
-                  <i className="bi bi-envelope-fill" />
-                </a>
-
-                <a
-                  href="https://wa.me/6283153192700"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="WhatsApp"
-                >
-                  <i className="bi bi-whatsapp" />
-                </a>
-
-                <a
-                  href="https://instagram.com/c.syrmw"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Instagram"
-                >
-                  <i className="bi bi-instagram" />
-                </a>
-
+                <p className="footer-text">
+                  © {new Date().getFullYear()} Riski Muhammad Wiyanto
+                </p>
               </div>
-            </div>
-
-            <p className="footer-text">
-              © {new Date().getFullYear()}{" "}
-              Riski Muhammad Wiyanto
-            </p>
-
+            </footer>
           </div>
-        </footer>
+        </div>
 
         {/* =========================
             PROJECT MODAL
@@ -538,81 +459,54 @@ function App() {
         {selectedProject && (
           <div
             className="project-modal-overlay"
-            onClick={() =>
-              setSelectedProject(null)
-            }
+            onClick={() => setSelectedProject(null)}
           >
-            <div
-              className="project-modal"
-              onClick={(e) =>
-                e.stopPropagation()
-              }
-            >
-
+            <div className="project-modal" onClick={(e) => e.stopPropagation()}>
               <button
                 className="close-modal"
-                onClick={() =>
-                  setSelectedProject(null)
-                }
+                onClick={() => setSelectedProject(null)}
                 aria-label="Close modal"
               >
                 ✕
               </button>
 
-              <h2>
-                {selectedProject.title}
-              </h2>
+              <h2>{selectedProject.title}</h2>
 
-              <p>
-                {selectedProject.description}
-              </p>
+              <p>{selectedProject.description}</p>
 
-              {selectedProject.screenshots?.map(
-                (image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`Screenshot ${
-                      index + 1
-                    }`}
-                    style={{
-                      width: "100%",
-                      borderRadius: "12px",
-                      marginTop: "20px",
-                      marginBottom: "12px",
-                    }}
-                  />
-                )
-              )}
+              {selectedProject.screenshots?.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Screenshot ${index + 1}`}
+                  style={{
+                    width: "100%",
+                    borderRadius: "12px",
+                    marginTop: "20px",
+                    marginBottom: "12px",
+                  }}
+                />
+              ))}
 
               <div className="project-tags">
-                {selectedProject.stack.map(
-                  (tech) => (
-                    <span
-                      key={tech}
-                      className="tag-pill"
-                    >
-                      {tech}
-                    </span>
-                  )
-                )}
+                {selectedProject.stack.map((tech) => (
+                  <span key={tech} className="tag-pill">
+                    {tech}
+                  </span>
+                ))}
               </div>
 
               <a
-                href={
-                  selectedProject.github
-                }
+                href={selectedProject.github}
                 target="_blank"
                 rel="noreferrer"
                 className="link-btn"
               >
                 Github Repository
               </a>
-
             </div>
           </div>
         )}
-
       </ClickSpark>
     </div>
   );
